@@ -1,8 +1,8 @@
+from dotenv import load_dotenv
 from fastapi import FastAPI
 from app.api.v1.link import router
 
-
-app = FastAPI(debug=True, title="Cutlet: The URL shortener API docs")
+load_dotenv()
 
 
 app = FastAPI(debug=True, title="Cutlet: The URL shortener API docs")
