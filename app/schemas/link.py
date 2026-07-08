@@ -1,9 +1,9 @@
 from datetime import datetime
 from pydantic import BaseModel, HttpUrl, ConfigDict
-import logfire
+# import logfire
 
-logfire.configure()
-logfire.instrument_pydantic()
+# logfire.configure()
+# logfire.instrument_pydantic()
 
 
 class LinkBase(BaseModel):

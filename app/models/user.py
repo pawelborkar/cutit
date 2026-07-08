@@ -15,8 +15,8 @@ class USER(Base):
     is_active: Mapped[bool] = mapped_column(Boolean, server_default=text("true"))
 
     created_at: Mapped[datetime] = mapped_column(
-        DateTime(datetime.UTC), server_default=func.now()
+        DateTime(datetime.now(UTC)), server_default=func.now()
     )
     update_at: Mapped[datetime | None] = mapped_column(
-        DateTime(datetime.UTC), on_update=func.now(), nullable=True
+        DateTime(datetime.now(UTC)), on_update=func.now(), nullable=True
     )

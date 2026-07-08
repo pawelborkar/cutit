@@ -9,7 +9,8 @@ class AppSettings(BaseSettings):
     APP_NAME: str = "Cutlet"
     APP_DESCRIPTION: str = "Cutlet: Create short URLs"
     APP_VERSION: str = "0.1.0"
-    APP_API_VERSION: str = "v1"
+    API_VERSION: str = "v1"
+    LICENSE: str = "Apache-2.0 License"
     APP_SHORT_CODE_LENGTH: int = 6
     APP_DEFAULT_REDIRECT_TYPE: int = (
         302  # Temporary redirect which doesn't get cached by browsers
@@ -30,7 +31,7 @@ class PostgresSettings(BaseSettings):
     @property
     def DATABASE_URL(self) -> PostgresDsn:
         return PostgresDsn.build(
-            scheme="postresql+psycopg2",
+            scheme="postgresql+asyncpg",
             username=self.POSTGRES_USER,
             password=self.POSTGRES_PASSWORD,
             host=self.POSTGRES_HOST,
@@ -45,9 +46,10 @@ class Settings(BaseSettings):
         env_ignore_empty=True,
         env_file_encoding="utf-8",
         extra="ignore",
+        env_nested_delimiter="__",
     )
-    app: AppSettings = AppSettings()
-    postgres: PostgresSettings = PostgresSettings()
+    app: AppSettings
+    postgres: PostgresSettings
 
 
 settings = Settings()
