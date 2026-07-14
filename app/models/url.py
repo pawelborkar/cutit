@@ -1,4 +1,4 @@
-from datetime import datetime, UTC
+from datetime import datetime
 from sqlalchemy import String, DateTime, func
 from sqlalchemy.orm import mapped_column, Mapped
 from .base import Base
@@ -13,13 +13,13 @@ class URL(Base):
         String(2048),  # 2048 is the Pydantic's default for HttpUrl type
     )  # Explicitly setting arbitary value for the destination URL in order to avoid pollution
     # user: Mapped[int]: USER.id
-    count: Mapped[int] = mapped_column()
+    count: Mapped[int] = mapped_column(default=0, server_default="0")
     created_at: Mapped[datetime] = mapped_column(
-        DateTime(datetime.now(UTC)), server_default=func.now()
+        DateTime(timezone=True), server_default=func.now()
     )
     # expires_at: Mapped[datetime] = mapped_column(
     #     DateTime(datetime.UTC.utc), server_default=func.now()
     # )
     updated_at: Mapped[datetime | None] = mapped_column(
-        DateTime(datetime.now(UTC)), server_default=func.now()
+        DateTime(timezone=True), server_default=func.now(), onupdate=func.now()
     )
