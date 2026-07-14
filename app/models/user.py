@@ -1,7 +1,7 @@
 from datetime import datetime
 from sqlalchemy import DateTime, Boolean, String, func, text
 from sqlalchemy.orm import Mapped, mapped_column
-from models.base import Base
+from app.models.base import Base
 
 
 class USER(Base):
@@ -15,8 +15,8 @@ class USER(Base):
     is_active: Mapped[bool] = mapped_column(Boolean, server_default=text("true"))
 
     created_at: Mapped[datetime] = mapped_column(
-        DateTime(datetime.now(UTC)), server_default=func.now()
+        DateTime(timezone=True), server_default=func.now()
     )
     update_at: Mapped[datetime | None] = mapped_column(
-        DateTime(datetime.now(UTC)), on_update=func.now(), nullable=True
+        DateTime(timezone=True), server_default=func.now(), onupdate=func.now()
     )
