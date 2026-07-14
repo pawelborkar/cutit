@@ -1,4 +1,5 @@
 from pydantic import (
+    Field,
     PostgresDsn,
     computed_field,
 )
@@ -48,8 +49,8 @@ class Settings(BaseSettings):
         extra="ignore",
         env_nested_delimiter="__",
     )
-    app: AppSettings
-    postgres: PostgresSettings
+    app: AppSettings = Field(default_factory=AppSettings)
+    postgres: PostgresSettings = Field(default_factory=PostgresSettings)
 
 
 settings = Settings()
