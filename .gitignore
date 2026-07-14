@@ -12,4 +12,4 @@ wheels/
 # Virtual environments
 .venv
 .env
-*.db
+alembic/versions/__pycache__/.db
