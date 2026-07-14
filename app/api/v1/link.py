@@ -1,6 +1,5 @@
 import secrets
-from typing import Annotated
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import RedirectResponse
 from sqlalchemy.engine import url
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -24,15 +23,14 @@ async def create_short_code(
     link: LinkCreate, db: Annotated[AsyncSession, Depends(async_get_db)]
 ):
     try:
-        short_code = secrets.token_urlsafe(6)
-        new_url = URL(short_code=short_code, url=link)
+        short_code = secrets.token_urlsafe(4)
+        new_url = URL(short_code=short_code, url=str(link.url))
         db.add(new_url)
         await db.flush()
         return new_url
 
     except Exception as e:
         raise HTTPException(status_code=HTTP_400_BAD_REQUEST, detail=str(e))
-    # short_code = base64.urlsafe_b64encode(key.encode('utf-8')).decode('utf-8').rstrip('=')
 
 
 """
