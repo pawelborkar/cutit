@@ -1,0 +1,10 @@
+.git
+.venv
+.ruff_cache
+alembic/versions/__pycache__/.db
+
+.env
+*.pyc
+__pycache__
+
+
