@@ -6,11 +6,17 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "format": "prettier --write .",
     "lint": "oxlint",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@heroui/react": "^3.2.2",
+    "@heroui/styles": "^3.2.2",
     "@tailwindcss/vite": "^4.3.3",
+    "@tanstack/react-query": "^5.101.4",
+    "axios": "^1.18.1",
+    "lucide-react": "^1.25.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "tailwindcss": "^4.3.3"
