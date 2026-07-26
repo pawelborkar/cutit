@@ -11,11 +11,6 @@ export const ResultCard = (link: string) => {
         <Link href={shortLink} target="_blank" className="underline w-3/4">
           {shortLink}
           <Link.Icon />
-          {/* <InputGroup.Input */}
-          {/*   className="w-full text-underline" */}
-          {/*   disabled */}
-          {/*   placeholder={shortLink} */}
-          {/* /> */}
         </Link>
         <InputGroup.Suffix className="pr-0 w-12">
           <Button
