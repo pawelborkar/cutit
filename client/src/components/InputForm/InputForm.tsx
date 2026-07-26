@@ -1,21 +1,18 @@
 import { Button, InputGroup, Surface, toast } from "@heroui/react";
-import { noop, useQuery } from "@tanstack/react-query";
+import { noop } from "@tanstack/react-query";
 import { createShortURL } from "../../services/axios.ts";
 import { CornerDownLeft, Link } from "lucide-react";
 import { useState } from "react";
 
+const API_URL = import.meta.env.VITE_API_URL || "https://c.pawel.in";
 export function InputForm() {
-  const API_URL = import.meta.env.API_URL || "https://c.pawel.in";
-  //   const {isPending, error, data } = useQuery({
-  // queryKey: ['createShortURLKey'],
-  // queryFn: createShortURL
-  // })
-  //
   const [inputLink, setInputLink] = useState<string>("");
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let link = e.target?.value;
     setInputLink(link);
   };
+
   const handleSubmit = async () => {
     const res = await createShortURL({ url: inputLink });
     console.log("RESULT", res);
@@ -29,6 +26,7 @@ export function InputForm() {
       description: "Your short link is ready",
     });
   };
+
   return (
     <Surface className="flex flex-col h-1/3 w-96 items-center justify-center rounded-3xl bg-rose-100/50 shadow-lg backdrop-blur-lg p-4">
       <h1 className="text-4xl font-semibold mb-8">cutit.in</h1>
