@@ -3,10 +3,12 @@ import { noop } from "@tanstack/react-query";
 import { createShortURL } from "../../services/axios.ts";
 import { CornerDownLeft, Link } from "lucide-react";
 import { useState } from "react";
+import { ResultCard } from "../ResultCard/ResultCard.tsx";
 
 const API_URL = import.meta.env.VITE_API_URL || "https://c.pawel.in";
 export function InputForm() {
   const [inputLink, setInputLink] = useState<string>("");
+  const [shortURL, setShortURL] = useState<string>("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let link = e.target?.value;
@@ -15,10 +17,10 @@ export function InputForm() {
 
   const handleSubmit = async () => {
     const res = await createShortURL({ url: inputLink });
-    console.log("RESULT", res);
-    const shortLink = await res?.short_code;
-
-    toast(`${API_URL}/${shortLink}`, {
+    const shortCode = await res?.short_code;
+    const shortLink = `${API_URL}/${shortCode}`;
+    setShortURL(shortLink);
+    toast(shortLink, {
       actionProps: {
         children: "Copy",
         onPress: noop,
@@ -48,6 +50,7 @@ export function InputForm() {
           </Button>
         </InputGroup.Suffix>
       </InputGroup>
+      {shortURL && <ResultCard link={shortURL} />}
     </Surface>
   );
 }
