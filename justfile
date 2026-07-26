@@ -4,6 +4,9 @@ dev:
 cdev:
   cd client/ && bun run dev
 
+format:
+  ruff format . && cd client && bun format
+
 up:
   docker compose up
 
