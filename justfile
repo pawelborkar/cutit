@@ -1,6 +1,9 @@
 dev:
   fastapi dev
 
+cdev:
+  cd client/ && bun run dev
+
 up:
   docker compose up
 
