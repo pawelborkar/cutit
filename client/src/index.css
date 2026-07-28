@@ -1,2 +1,40 @@
 @import "tailwindcss";
 @import "@heroui/styles";
+
+@layer utilities {
+  .bg-grid-squares {
+    background-size: 32px 32px;
+    background-image:
+      linear-gradient(to right, rgba(217, 70, 239, 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(217, 70, 239, 0.08) 1px, transparent 1px);
+  }
+
+  .bg-grid-squares-dense {
+    background-size: 20px 20px;
+    background-image:
+      linear-gradient(to right, rgba(148, 163, 184, 0.12) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(148, 163, 184, 0.12) 1px, transparent 1px);
+  }
+
+  .bg-vignette-mask {
+    mask-image: radial-gradient(
+      ellipse 70% 60% at 50% 30%,
+      black 20%,
+      transparent 90%
+    );
+    -webkit-mask-image: radial-gradient(
+      ellipse 70% 60% at 50% 30%,
+      black 20%,
+      transparent 90%
+    );
+  }
+
+  .bg-vignette-card {
+    mask-image: radial-gradient(ellipse at center, black 50%, transparent 100%);
+    -webkit-mask-image: radial-gradient(
+      ellipse at center,
+      black 50%,
+      transparent 100%
+    );
+  }
+}
